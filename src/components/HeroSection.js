@@ -97,11 +97,14 @@ const HeroSection = ({ nav, handleNav }) => {
 				initial='hidden'
 				whileInView='visible'
 				className='hero-content'>
-				<p className='hero-intro'>
+					
+				<p className='heading-text'>
 					<span>Renan</span> <span>Freitas Braga.</span>
 				</p>
-				<p className='hero-desc'>
-					I'm a <span className='hero-desc-sub'>Senior Fullstack Developer specializing in OpenAI and Blockchain.</span>
+				<br/>
+				<br/>
+				<p className='heading-text'>
+					I'm <span className='hero-desc-sub'> a Senior Fullstack Developer specializing in OpenAI and Blockchain.</span>
 				</p>
 			</motion.div>
 			<motion.span
