@@ -1,0 +1,107 @@
+.theme-toggle {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 50;
+  margin: 0;
+}
+
+.theme-toggle-button {
+  background: rgba(20, 157, 221, 0.15);
+  border: 2px solid var(--nav-blue);
+  padding: 0.8rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  cursor: pointer;
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+  box-shadow: 0 0 15px rgba(20, 157, 221, 0.15);
+  backdrop-filter: blur(5px);
+}
+
+.theme-toggle-button:hover {
+  background-color: var(--nav-blue);
+  transform: scale(1.1) rotate(360deg);
+  border-color: var(--nav-blue);
+  box-shadow: 0 0 20px rgba(20, 157, 221, 0.4);
+}
+
+.toggle-icon {
+  width: 1.3rem;
+  height: 1.3rem;
+  color: var(--nav-blue);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle-button:hover .toggle-icon {
+  color: var(--white);
+  transform: rotate(-360deg) scale(1.2);
+}
+
+.theme-toggle-button span {
+  display: none;
+}
+
+/* Update light theme variables */
+:root {
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --primary-color: #2563eb;
+  --secondary-color: #f3f4f6;
+  --nav-grey: #666666;
+  --nav-deep-grey: #444444;
+  --nav-blue: #2563eb;
+  --nav-blue-shade: #1d4ed8;
+  --card-blue-shade: #f8fafc;
+  --nav-deep-blue: #e2e8f0;
+  --nav-bgd: #f1f5f9;
+  --white: #333333;
+  --soft-white: #1a1a1a;
+  --navy: #f8fafc;
+  --light-blue: rgb(37, 99, 235);
+  --section-bgd: #ffffff;
+  --overlay-color: rgba(255, 255, 255, 0.95);
+  --overlay-opacity: 0.3;
+}
+
+/* Dark theme styles */
+body.dark-theme {
+  --background-color: #1a1a1a;
+  --text-color: #ffffff;
+  --primary-color: #3b82f6;
+  --secondary-color: #2d2d2d;
+  --nav-grey: #a8a9b4;
+  --nav-deep-grey: #94959b;
+  --nav-blue: #149ddd;
+  --nav-blue-shade: #0e668f;
+  --card-blue-shade: #112240;
+  --nav-deep-blue: #2c2f3f;
+  --nav-bgd: #040b14;
+  --white: #fff;
+  --soft-white: #ccd6f6;
+  --navy: #0a192f;
+  --light-blue: rgb(156, 183, 255);
+  --section-bgd: #00021a;
+  --overlay-color: rgba(0, 0, 0, 0.95);
+  --overlay-opacity: 0.6;
+}
+
+/* Apply theme variables to existing elements */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark theme specific styles */
+body.dark-theme .theme-toggle-button {
+  background: rgba(20, 157, 221, 0.1);
+  box-shadow: 0 0 10px rgba(20, 157, 221, 0.2);
+}
+
+body.dark-theme .theme-toggle-button:hover {
+  background-color: var(--nav-blue);
+  box-shadow: 0 0 15px rgba(20, 157, 221, 0.4);
+} 

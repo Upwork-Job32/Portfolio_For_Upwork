@@ -1,0 +1,542 @@
+.works-box {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 1.5rem;
+	padding: 1rem;
+	margin-left: 100px;
+	margin-right: 100px;
+	margin-bottom: 100px;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5vw;	
+	max-height: 700px;
+	overflow: auto;
+	/* Hide scrollbar for Firefox */
+  	scrollbar-width: none;
+  	/* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge, etc.) */
+  	&::-webkit-scrollbar {
+    	display: none; /* More robust for WebKit, can also use width/height 0 */
+  	}
+}
+
+.work-link-group {
+	text-decoration: none;
+}
+
+.works-container {
+	width: 100%;
+	padding: 2rem; /* Padding moved here from .works-card */
+	position: relative; /* For z-index stacking */
+	z-index: 2; /* Ensure text content is above the overlay */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-grow: 1;
+}
+
+.works-card {
+	background-color: var(--card-blue-shade);
+	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+	border-radius: 12px;
+	transition: background-image 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+	position: relative;
+	color: var(--soft-white); 
+	width: 450px;
+	height: 300px;
+	min-height: 280px; 
+	display: flex;
+	flex-direction: column;
+	cursor: default;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	/* border: 5px solid transparent; // Removed */
+	/* background-clip: padding-box; // Removed */
+}
+
+/* Overlay for cards with background images to ensure text readability */
+.works-card::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.35);
+	border-radius: inherit; /* Should match .works-card's 12px */
+	z-index: 1;
+	transition: opacity 0.4s ease-in-out;
+	opacity: 1;
+}
+
+/* Content within the card - hidden by default */
+.works-container > .work-content-link > .mid-work,
+.works-container > .work-content-link > .bottom-work {
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(10px); /* Optional: slight upward animation on appear */
+	transition: opacity 0.4s ease-in-out 0.1s, visibility 0.4s ease-in-out 0.1s, transform 0.4s ease-in-out 0.1s; /* Delayed transition for content */
+}
+
+.works-card:hover {
+	transform: translateY(-6px) scale(1.01);
+	/* box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.1); // This will be part of theme-specific hover */
+	background-image: none !important; /* Hide background image on hover */
+}
+
+/* Light Theme Hover - Elevation Shadow ONLY (border animation removed) */
+body:not(.dark-theme) .works-card:hover {
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Dark Theme Hover - Elevation Shadow ONLY (border animation removed) */
+body.dark-theme .works-card:hover {
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.18);
+}
+
+.works-card:hover::before { /* Hide overlay on hover */
+    opacity: 0;
+}
+
+/* Show content on card hover */
+.works-card:hover .works-container > .work-content-link > .mid-work,
+.works-card:hover .works-container > .work-content-link > .bottom-work {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+/* Removed .top-work and .top-work .right */
+
+.mid-work {
+	margin-bottom: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.work-title {
+	font-size: 1.8rem; /* Adjusted size */
+	font-weight: 700;
+	margin-bottom: 0.75rem;
+	color: var(--white); /* Should be fine on dark card background */
+}
+
+.works-card:hover .work-title {
+    /* Gradient text on hover - ensure it uses light colors for the gradient */
+    /* This is handled by theme-specific rules later, check those gradients */
+}
+
+.work-desc {
+	font-size: 0.9rem; /* Adjusted size */
+	line-height: 1.6;
+	color: var(--soft-white); /* Should be fine on dark card background */
+	max-width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.bottom-work {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 0.75rem;
+	justify-content: center;
+	align-items: center;
+	margin-top: 1.5rem;
+}
+
+.bottom-work small {
+	font-size: 0.75rem;
+	background-color: var(--secondary-color); 
+	color: var(--nav-grey); /* Text color for tags on solid card bg */
+	padding: 0.3rem 0.6rem;
+	border-radius: 5px;
+	border: 1px solid var(--nav-deep-blue); /* Optional border for tags */
+}
+
+.work-content-link {
+	text-decoration: none;
+	color: inherit; /* Inherits light color from .works-card */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	flex-grow: 1;
+	width: 100%;
+}
+
+/* Styles for Works Filter Tabs (adapted from Skills.css) */
+.works-filter-tabs-container {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-bottom: 2rem; /* Matches Skills section */
+	gap: 0.75rem; /* Matches Skills section */
+	perspective: 800px; /* For 3D effects */
+}
+
+.works-filter-tab {
+	padding: 0.6rem 1.2rem; /* Matches skill-tab */
+	margin: 0 0.3rem; /* Matches skill-tab */
+	min-width: 160px; /* Added to ensure uniform width */
+	background-color: var(--card-blue-shade); /* Matches skill-tab */
+	color: var(--nav-grey); /* Matches skill-tab */
+	border: 1px solid var(--nav-deep-blue); /* Matches skill-tab */
+	border-radius: 8px; /* Matches skill-tab */
+	cursor: pointer;
+	transition: all 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+	font-size: 0.9rem; /* Matches skill-tab */
+	font-weight: 600; /* Matches skill-tab */
+	outline: none;
+	transform-style: preserve-3d;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.2), inset 0 -2px 2px rgba(0,0,0,0.1); /* Matches skill-tab */
+	text-shadow: 
+		0.5px 0.5px 0px var(--nav-bgd), 
+		1px 1px 0px var(--nav-deep-blue); /* Matches skill-tab */
+	position: relative; /* For pseudo-element positioning (underline) */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem; /* Space between icon and text label */
+}
+
+.works-filter-tab svg {
+	font-size: 1.1em; /* Matches skill-tab svg */
+	margin-bottom: -0.1em; /* Minor adjustment for vertical alignment */
+}
+
+.works-filter-tab span {
+	display: inline-block; /* Ensures span behaves predictably with flex */
+}
+
+.works-filter-tab:hover {
+	/* background-color: var(--nav-blue-shade); // Handled by theme-specific rules */
+	/* color: var(--white); // Handled by theme-specific rules */
+	/* border-color: var(--nav-blue); // Handled by theme-specific rules */
+	transform: translateY(-5px) scale(1.07) rotateX(7deg);
+	/* box-shadow: ... // Handled by theme-specific rules */
+	/* text-shadow: ... // Handled by theme-specific rules */
+}
+
+/* Original .works-filter-tab.active rule - to be cleaned up */
+.works-filter-tab.active {
+	/* background-color: var(--nav-blue); // Will be replaced by gradient */
+	/* color: var(--white); // Will be set for contrast against gradient */
+	/* border-color: var(--nav-blue); // Will be themed */
+	transform: scale(1.1) rotateX(0deg) translateZ(15px);
+	/* box-shadow: ... // Will be themed */
+	/* text-shadow: ... // Text will be solid */
+}
+
+/* Light Theme Active Work Filter Tab - Gradient Background */
+body:not(.dark-theme) .works-filter-tab.active {
+    background-image: linear-gradient(135deg, var(--secondary-color), #d8d8d8); /* Light grey gradient */
+    color: var(--text-color); /* Ensure text is readable */
+    border-color: var(--nav-grey);
+    box-shadow: 0 5px 15px rgba(100,100,100,0.2), /* Softer grey glow */
+                inset 0 1px 1px rgba(255,255,255,0.3), 
+                inset 0 -2px 2px rgba(0,0,0,0.1);
+    text-shadow: none; /* Text is solid */
+}
+
+body:not(.dark-theme) .works-filter-tab.active::after {
+    background-color: var(--nav-deep-grey); /* Darker grey underline */
+}
+
+/* Dark Theme Active Work Filter Tab - Gradient Background */
+body.dark-theme .works-filter-tab.active {
+    background-image: linear-gradient(135deg, var(--nav-blue), var(--nav-blue-shade)); /* Vibrant blue gradient */
+    color: var(--white);
+    border-color: var(--light-blue);
+    box-shadow: 0 5px 15px rgba(20, 157, 221, 0.3), /* Blue glow */
+                inset 0 1px 1px rgba(255,255,255,0.15), 
+                inset 0 -2px 2px rgba(0,0,0,0.2);
+    text-shadow: none; /* Text is solid */
+}
+
+body.dark-theme .works-filter-tab.active::after {
+    background-color: var(--light-blue); /* Lighter blue underline */
+}
+
+/* Animated underline for active tab */
+.works-filter-tab.active::after {
+	content: '';
+	position: absolute;
+	bottom: -5px; /* Position below the tab */
+	left: 50%;
+	transform: translateX(-50%);
+	width: 0;
+	height: 3px;
+	/* background-color: var(--nav-blue); // Handled by theme-specific rules */
+	border-radius: 2px;
+	animation: drawWorkFilterUnderline 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes drawWorkFilterUnderline {
+	from {
+		width: 0;
+	}
+	to {
+		width: 70%; /* Adjust width as needed */
+	}
+  }
+
+/* Media Queries */
+@media screen and (max-width: 750px) {
+	.works-box {
+		padding: 1rem 0.5rem;
+		gap: 1rem;
+	}
+	
+	.works-card {
+		width: 100%;
+		max-width: 500px;
+		padding: 1rem;
+	}
+}
+
+@media screen and (max-width: 550px) {
+	.works-card {
+		padding: 1rem;
+	}
+
+	.work-desc {
+		font-size: 65%;
+		line-height: 1.4;
+	}
+
+	.work-title {
+		font-size: 1.1rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.bottom-work {
+		gap: 8px;
+	}
+
+	.bottom-work small {
+		font-size: 55%;
+		margin: 0 0.25rem;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	.works-card {
+		width: 100%;
+		max-width: 250px;
+		padding: 0.75rem;
+	}
+}
+
+/* Updated 3D Heading Styles (copied from Skills.css for consistency) */
+.heading {
+	font-family: "Poppins", sans-serif;
+	margin-bottom: 3rem;
+	perspective: 1000px; 
+	text-align: center; /* Ensure heading is centered */
+}
+
+.heading-sub-text {
+	color: var(--nav-grey); /* Subtler color for sub-text */
+	font-size: 1rem; 
+	margin-bottom: 0.1rem; /* Reduced margin */
+	text-shadow: none; /* Keep sub-text flat */
+}
+
+.heading-text {    
+	/* color: #222; // Handled by theme-specific rules */
+	font-size: 3.5rem;
+	font-weight: 700;
+	line-height: 1.1;
+	position: relative; 
+	display: inline-block; /* Ensure this is present for gradient */
+	transform-style: preserve-3d;
+	transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	/* text-shadow: ... // Handled by theme-specific rules */
+	transform: rotateX(5deg) rotateY(-3deg) translateZ(5px); 
+}
+
+.heading:hover .heading-text {
+	/* color: var(--nav-blue); // Handled by theme-specific rules */
+	transform: rotateX(2deg) rotateY(-1deg) translateZ(15px) scale(1.03);
+	/* text-shadow: ... // Handled by theme-specific rules */
+}
+
+/* Light Theme Work Card Title & Links */
+body:not(.dark-theme) .work-title {
+    color: var(--text-color);
+}
+body:not(.dark-theme) .works-card:hover .work-title {
+    background-image: linear-gradient(135deg, #eeeeee, #ffffff);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: none;
+}
+body:not(.dark-theme) .work-git:hover,
+body:not(.dark-theme) .work-link:hover {
+    background-image: linear-gradient(135deg, var(--nav-deep-grey), var(--nav-grey));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Dark Theme Work Card Title & Links */
+body.dark-theme .work-title {
+    color: var(--soft-white); /* Or var(--white) if it looks better on dark cards */
+}
+body.dark-theme .works-card:hover .work-title {
+    background-image: linear-gradient(135deg, var(--soft-white), var(--white));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: none;
+}
+body.dark-theme .work-git:hover,
+body.dark-theme .work-link:hover {
+    background-image: linear-gradient(135deg, var(--light-blue), var(--nav-blue));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Light Theme Work Filter Tab Hover/Active */
+body:not(.dark-theme) .works-filter-tab {
+    /* Base text shadow for light theme if different */
+    text-shadow: 0.5px 0.5px 0px var(--nav-bgd), 1px 1px 0px var(--nav-deep-blue);
+}
+body:not(.dark-theme) .works-filter-tab:hover {
+    border-color: var(--nav-grey);
+    background-color: var(--secondary-color);
+    background-image: linear-gradient(135deg, var(--nav-deep-grey), var(--nav-grey));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    box-shadow: 0 8px 20px rgba(100,100,100,0.2), inset 0 -2px 1px rgba(0,0,0,0.1);
+    text-shadow: none;
+}
+body:not(.dark-theme) .works-filter-tab.active {
+    background-image: linear-gradient(135deg, var(--nav-deep-grey), var(--nav-grey));
+    color: var(--background-color);
+    border-color: var(--nav-grey);
+    box-shadow: 0 5px 15px rgba(100,100,100,0.3), inset 0 1px 1px rgba(255,255,255,0.15), inset 0 -2px 2px rgba(0,0,0,0.15);
+    text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.3);
+}
+body:not(.dark-theme) .works-filter-tab.active::after {
+    background-color: var(--nav-grey);
+}
+
+/* Dark Theme Work Filter Tab Hover/Active */
+body.dark-theme .works-filter-tab {
+    /* Base text shadow for dark theme if different - current one might be fine */
+     text-shadow: 0.5px 0.5px 0px var(--nav-bgd), 1px 1px 0px var(--nav-deep-blue);
+}
+body.dark-theme .works-filter-tab:hover {
+    border-color: var(--nav-blue);
+    background-color: var(--nav-blue-shade);
+    background-image: linear-gradient(135deg, var(--light-blue), var(--nav-blue));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    box-shadow: 0 8px 20px rgba(20, 157, 221, 0.25), inset 0 -2px 1px rgba(0,0,0,0.1), 0 0 18px var(--nav-blue-shade);
+    text-shadow: none;
+}
+body.dark-theme .works-filter-tab.active {
+    background-image: linear-gradient(135deg, var(--nav-blue-shade), var(--nav-blue));
+    color: var(--white);
+    border-color: var(--nav-blue);
+    box-shadow: 0 5px 15px rgba(20, 157, 221, 0.4), inset 0 1px 1px rgba(255,255,255,0.25), inset 0 -2px 2px rgba(0,0,0,0.25);
+    text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.5);
+}
+body.dark-theme .works-filter-tab.active::after {
+    background-color: var(--nav-blue);
+}
+
+/* Heading Styles */
+/* Light Theme Heading Gradient & Simplified Shadow */
+body:not(.dark-theme) .heading-text {
+    background-image: linear-gradient(135deg, var(--nav-grey), var(--nav-deep-grey), #2b2b2b);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 
+        1px 1px 2px rgba(0,0,0,0.15), 
+        2px 2px 3px rgba(0,0,0,0.1);
+}
+
+/* Dark Theme Heading Gradient & Simplified Shadow */
+body.dark-theme .heading-text {
+    background-image: linear-gradient(135deg, var(--light-blue), var(--nav-blue), var(--nav-blue-shade));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow:
+        1px 1px 0px var(--nav-deep-blue), 
+        2px 2px 0px rgba(0,0,0,0.7),
+        3px 3px 5px rgba(0,0,0,0.5);
+}
+
+/* Hover effect for heading text - keep existing transform */
+.heading:hover .heading-text {
+    /* The gradient will remain, text-shadow might need slight enhancement on hover or not */
+}
+
+/* NEW ::after for Flowing Gradient Border (Always On) */
+.works-card::after {
+    content: '';
+    position: absolute;
+    z-index: -1; /* Behind the parent's content */
+    inset: -5px; /* Make it 5px larger on all sides */
+    border-radius: 17px; /* Card radius (12px) + border width (5px) */
+    background-size: 300% 100%; /* Wide gradient for smooth flow */
+    animation: flowBorderColors 6s linear infinite;
+}
+
+/* Theme-Specific Gradients for Flowing Border */
+body:not(.dark-theme) .works-card::after {
+    background-image: linear-gradient(90deg, 
+        #e5e5e5, #ffffff, #d5d5d5, #f5f5f5, #e5e5e5, #ffffff, #d5d5d5, #f5f5f5, #e5e5e5);
+}
+
+body.dark-theme .works-card::after {
+    background-image: linear-gradient(90deg, 
+        var(--nav-blue-shade), var(--light-blue), var(--nav-blue), #127ead, 
+        var(--nav-deep-blue), var(--nav-blue-shade), var(--light-blue), var(--nav-blue), #127ead, var(--nav-deep-blue));
+}
+
+/* NEW Keyframes for Flowing Border Colors */
+@keyframes flowBorderColors {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; } /* Match 300% size for a full loop */
+}
+
+/* Theme-Specific Streak Styles (OLD - these are for the across-content streak, now removed) */
+/* body:not(.dark-theme) .works-card::after { ... } */
+/* body.dark-theme .works-card::after { ... } */
+
+/* Override general .container styles specifically for the Works section */
+.works .container {
+  max-width: none; /* Allow it to take the full width of its parent (.works) */
+  padding-left: 5vw;   /* Remove horizontal padding */
+  padding-right: 5vw;  /* Remove horizontal padding */
+  /* Vertical padding (padding-top, padding-bottom) will be inherited or can be explicitly set if needed */
+  /* For example, to keep original vertical padding: */
+  /* padding-top: 4rem; */
+  /* padding-bottom: 4rem; */
+}
+

@@ -1,0 +1,38 @@
+angular project
+1:https://www.telcel.com
+2:https://us.shop.battle.net
+3:https://www.exclusiveprs.info
+
+
+openAI project
+4:https://www.phind.com
+5:https://www.jasper.ai
+6:https://chatbase.co
+
+
+shopify project:
+7:https://pktpal.com
+10:https://store.projuris.com.br 
+
+blockchain project:
+7:https://pktpal.com
+8:https://weroam.xyz
+
+React, Next.js project:
+8:https://weroam.xyz
+9:https://neoleaf.bytetown.agency
+10:https://store.projuris.com.br 
+
+Vue, Nuxt project:
+11:https://keikku.health
+
+
+wordpress project
+12:https://wherobots.com
+13:https://dogstudio.co
+
+three.js project:
+13:https://dogstudio.co
+8:https://weroam.xyz
+9:https://neoleaf.bytetown.agency
+5:https://www.jasper.ai
